@@ -43,16 +43,16 @@ Node_modules requirement'ları kurmanız yeterli , npm start ile başlatabilirsi
 
 ## Projeden Görüntüler
 ### Register
-![register](https://user-images.githubusercontent.com/73299153/183382229-5c7c2e27-1276-408d-99b0-86e46f94cc77.JPG)
+![register](https://user-images.githubusercontent.com/73299153/183383919-3f7307c8-0e41-4d35-bb34-7cf601559707.JPG)
 
 ### Login
-![login](https://user-images.githubusercontent.com/73299153/183382581-051e58bc-a7ef-4f93-bb08-cd9085fcb641.JPG)
+![login](https://user-images.githubusercontent.com/73299153/183384293-9d4bedeb-7995-43ea-87dd-43fdf4bcf098.JPG)
 
 ### Homepage
-![homepage](https://user-images.githubusercontent.com/73299153/183382224-c7652c44-8b50-4d67-8744-da7dfccbe508.JPG)
+![homepage](https://user-images.githubusercontent.com/73299153/183384291-fd17015d-6a11-4ba1-9b70-d6ea1abe389b.JPG)
 
 ### Conversations
-![conversation](https://user-images.githubusercontent.com/73299153/183382220-272fe4c7-29f9-473f-b556-b1a626bdb518.JPG)
+![conversation](https://user-images.githubusercontent.com/73299153/183384288-edd997e8-83a1-4af9-9d07-5a7ca197bc08.JPG)
 
 
 
