@@ -15,9 +15,11 @@ Bu projenin oluşturulma amacı , kişilerin online olarak birbirine mesaj gönd
 
 ## Proje nasıl kurulur
 
-`npm install`    
-`cd server` -> `npm install`  
-`cd socket` -> `npm install`
+    npm install  
+    
+    cd server -> npm install  
+    
+    cd socket -> npm install
  
 ## Projede kullanılmış olan özellikler
 
