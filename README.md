@@ -14,12 +14,17 @@ Bu projenin oluşturulma amacı , kişilerin online olarak birbirine mesaj gönd
 `antd`
 
 ## Proje nasıl kurulur
-
-    npm install  
-    
-    cd server -> npm install  
-    
-    cd socket -> npm install
+```javascript
+npm install
+```
+```javascript
+cd server
+npm install
+```
+```javascript
+cd socket
+npm install
+```
  
 ## Projede kullanılmış olan özellikler
 
