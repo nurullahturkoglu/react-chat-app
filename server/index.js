@@ -10,6 +10,7 @@ const app = express();
 const PORT = parseInt(process.env.PORT);
 
 // DB CONNECTION
+// YOU MUST FILL .env BEFORE START
 dbConnection();
 
 
