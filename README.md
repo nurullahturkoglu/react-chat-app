@@ -72,5 +72,5 @@ npm install
 
 Bu proje staj esnasında reactı öğrenirken tasarladığım ilk büyük çaplı proje.React özelliklerini , server kısmının oluşturulmasını , socket.io'nun bağlanmasını ve mongodb ile veritabanı kullanmasını kavradım. Benim için çok büyük bir adım oldu. Hatalarla yüzleşmeyi , dokümantasyon okumasını , projenin adım adım nasıl geliştirilebileceğini , doğru kaynak aramasını öğrendim.Projeyi oluştururken takip ettiğim [Lama Devoloper](https://www.youtube.com/c/LamaDev) ve staj işyerinde bulunan [Ekrem Abime](https://github.com/ekremtinas) teşekkür ediyorum.
 
-**Note: bu proje react kullanarak yaptığım ilk büyük projedir**  
-**Note2: projenin geliştirilmesi takribi 10 gün sürmüştür**
+**Not: bu proje react kullanarak yaptığım ilk büyük projedir**  
+**Not: projenin geliştirilmesi takribi 10 gün sürmüştür**
