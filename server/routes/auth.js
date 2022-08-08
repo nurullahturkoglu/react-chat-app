@@ -11,6 +11,7 @@ router.post("/sign-up", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
+    //create user model
     const signedUpUser = new UserDatabase({
       fullName: req.body.fullName,
       username: req.body.username,
@@ -36,6 +37,7 @@ router.post("/sign-up", async (req, res) => {
     if (isPhoneExist)
       return res.status(404).json({ err: "this phone number already exist" });
 
+    // save on database
     const user = signedUpUser.save();
     res.status(200).json(user);
   } catch (error) {
@@ -68,25 +70,26 @@ router.post("/sign-in", async (req, res, next) => {
   }
 });
 
-router.post("/",async (req,res) => {
+router.post("/", async (req, res) => {
   try {
-    const searchedUser = await UserDatabase.findOne({username : req.body.username})
-    .select({password:0})
-    res.status(200).json(searchedUser)
+    const searchedUser = await UserDatabase.findOne({
+      username: req.body.username,
+    }).select({ password: 0 });
+    res.status(200).json(searchedUser);
   } catch (error) {
-    res.status(500).json({msg: error})
+    res.status(500).json({ msg: error });
   }
-})
+});
 
-router.get("/:id",async (req,res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const searchedUser = await UserDatabase.findOne({_id : req.params.id})
-    .select({password:0})
-    res.status(200).json(searchedUser)
+    const searchedUser = await UserDatabase.findOne({
+      _id: req.params.id,
+    }).select({ password: 0 });
+    res.status(200).json(searchedUser);
   } catch (error) {
-    res.status(500).json({msg: error})
+    res.status(500).json({ msg: error });
   }
-})
-
+});
 
 module.exports = router;
