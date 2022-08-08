@@ -1,4 +1,4 @@
-# Online Chat Application with React
+# React ile Online Mesajlaşma Uygulaması
 
 ## Projenin içeriği
 
