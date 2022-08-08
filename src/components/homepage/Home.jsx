@@ -20,6 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     socket.current = io("ws://localhost:4001");
+    // GET DIRECT MESSAGES
     socket.current.on("sendMessage", (data) => {
       setDirectMessage({
         senderId: data.senderId,
@@ -34,6 +35,7 @@ const Home = () => {
       navigator("/");
     }
 
+    // SET CURRENT USER
     const name = JSON.parse(localStorage.getItem("user"));
     const user = { username: name };
 
@@ -59,6 +61,7 @@ const Home = () => {
   }, [currentUser]);
 
   useEffect(() => {
+    // DIRECT MESSAGE ON SOCKET
     currentUser && socket.current.emit("sendUserInfo", currentUser._id);
     socket.current.on("activeUserList", (data) => {
       console.log(data);
@@ -66,6 +69,8 @@ const Home = () => {
   }, [currentUser]);
 
   useEffect(() => {
+
+    // SET CURRENT CONTACT
     axios
       .get(`http://localhost:4000/message/${currentContact?._id}`)
       .then((res) => {
@@ -77,6 +82,8 @@ const Home = () => {
   }, [currentContact]);
 
   useEffect(() => {
+
+    // SHOW MESSAGE ON CLIENT
     directMessage &&
       currentContact.members?.includes(directMessage.senderId) &&
       setMessages((messages) => [...messages, directMessage]);
