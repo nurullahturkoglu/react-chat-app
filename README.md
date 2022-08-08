@@ -14,6 +14,9 @@ Bu projenin oluşturulma amacı , kişilerin online olarak birbirine mesaj gönd
 `MongoDB`
 `antd`
 
+## Proje nasıl kurulur
+
+Node_modules requirement'ları kurmanız yeterli , npm start ile başlatabilirsiniz. **.env dosyası üzerinden database bağlantısını ve port açmayı unutmayınız**
 ## Projede kullanılmış olan özellikler
 
 - Üyelik oluşturma anında daha önce kullanılmış özelliklere(kullanıcı adı, e-posta, telefon numarası) sahip üyelik veritabanında mevcut ise tekrar üyelik oluşturmama
