@@ -4,7 +4,6 @@
 
 Bu projenin oluşturulma amacı , kişilerin online olarak birbirine mesaj gönderebilmesi ve alabilmesidir.
 **Note: bu proje react kullanarak yaptığım ilk büyük projedir**
-[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 
 ## Bu projede hangi framework-library'ler kullanıldı
@@ -13,6 +12,7 @@ Bu projenin oluşturulma amacı , kişilerin online olarak birbirine mesaj gönd
 `Nodejs`
 `Socket.io`
 `MongoDB`
+`antd`
 
 ## Projede kullanılmış olan özellikler
 
@@ -37,6 +37,14 @@ Bu projenin oluşturulma amacı , kişilerin online olarak birbirine mesaj gönd
 - Kullanıcının arkaplanını değiştirebilmesi
 
 - Aktif kullanıcıların listelenebilmesi
+
+## Projeden Görüntüler
+
+![conversation](https://user-images.githubusercontent.com/73299153/183382220-272fe4c7-29f9-473f-b556-b1a626bdb518.JPG)
+![homepage](https://user-images.githubusercontent.com/73299153/183382224-c7652c44-8b50-4d67-8744-da7dfccbe508.JPG)
+![login](https://user-images.githubusercontent.com/73299153/183382225-5969662c-e3fa-4b91-9eb9-5e4d11ebf5d2.JPG)
+![register](https://user-images.githubusercontent.com/73299153/183382229-5c7c2e27-1276-408d-99b0-86e46f94cc77.JPG)
+
 
 ### Proje hakkında kişisel yorumum
 
