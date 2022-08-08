@@ -1,0 +1,59 @@
+@import "~antd/dist/antd.css";
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+
+
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+  gap: 5px;
+  height: 100vh;
+  font-family: "Roboto", Georgia, Times, "Times New Roman", serif;
+}
+
+.button-container {
+  background-color: #f8f9fd;
+}
+
+.login-form {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+  padding: 30px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+  padding: 2.2rem 0rem 2rem 5rem;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px;
+}
+
+#components-layout-demo-responsive .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* .site-layout-sub-header-background {
+  background: #fff;
+} */
+
+.site-layout-background {
+  background: #fff;
+}

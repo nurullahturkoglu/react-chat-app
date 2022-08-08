@@ -1,0 +1,31 @@
+.conversation{
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.conversation:hover{
+    background-color:azure;
+}
+
+.conversation-image{
+    width: 40px;
+    object-fit: cover;
+    margin-right: 1.2rem;
+}
+
+.conversation-label{
+    display: flex;
+    align-self: center;
+    font-weight: 700;
+}
+
+.contact-input {
+    margin: 1.2rem 0 1.2rem 0;
+    width: 100%;
+    padding: 5px 0;
+  }

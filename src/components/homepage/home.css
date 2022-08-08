@@ -1,0 +1,53 @@
+* {
+  font-family: "Roboto", Georgia, Times, "Times New Roman", serif;
+}
+
+.messenger {
+  height: 100vh;
+  display: flex;
+}
+
+.contact-list {
+  flex: 3;
+}
+
+.messages-list {
+  flex: 7;
+}
+
+.menu-list{
+  flex:2
+}
+
+.contact-wrapper{
+  padding: 1rem;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.messages-text-area{
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.messages-send{
+  padding-top: 1.5rem;
+}
+
+.contact-wrapper,
+.messages-wrapper{
+  padding: 10px;
+  height: 100%;
+}
+
+.no-conversation{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  padding-top: 30%;  
+}
+
+.no-conversation h2{
+  cursor:pointer;
+  font-size: 3rem;
+}

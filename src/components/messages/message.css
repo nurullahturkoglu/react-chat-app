@@ -1,0 +1,33 @@
+
+
+.message-content {
+  display: flex;
+  padding-top: 1.2rem;
+
+}
+
+.message-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 1rem;
+  border-radius: 50%;
+}
+
+.message-text {
+  background-color: #9D036E;
+  border-radius: 1.5rem;
+  color: white;
+  padding: 10px;
+  max-width: 50%;
+}
+
+.message-content.own {
+  justify-content: end;
+  padding-right: 3rem;
+}
+
+.message-text.own {
+  background-color:antiquewhite;
+  color: black;
+}
