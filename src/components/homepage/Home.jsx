@@ -19,7 +19,7 @@ const Home = () => {
   const scrollRef = useRef();
   const socket = useRef();
   const navigator = useNavigate();
-
+  
   useEffect(() => {
     socket.current = io("ws://localhost:4001");
     // GET DIRECT MESSAGES

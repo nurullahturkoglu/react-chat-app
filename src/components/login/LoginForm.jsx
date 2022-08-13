@@ -59,7 +59,7 @@ const LoginForm = ({ user, setUser }) => {
         rules={[
           {
             required: true,
-            message: "Please input your Username!",
+            message: "Please input your Username!", 
           },
         ]}
       >

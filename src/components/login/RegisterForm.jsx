@@ -201,7 +201,7 @@ const RegisterForm = () => {
         align="middle"
         style={{ minHeight: "100vh" }}
       >
-        <Col>{renderRegister}</Col>
+        <Col>{renderRegister}</Col> 
       </Row>
     </div>
   );
