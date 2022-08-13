@@ -17,6 +17,7 @@ const Home = () => {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const socket = useRef();
+  const navigator = useNavigate();
 
   useEffect(() => {
     socket.current = io("ws://localhost:4001");
@@ -105,8 +106,6 @@ const Home = () => {
     localStorage.removeItem("user")
     navigator("/")
   }
-
-  let navigator = useNavigate();
 
   const searchFriend = (value) => console.log(value);
 
