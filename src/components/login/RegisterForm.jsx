@@ -1,6 +1,6 @@
-import { Button, Form, Input, Select, Row, Col , message  } from "antd";
+import { Button, Form, Input, Select, Row, Col, message } from "antd";
 import { EditOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
-import { useNavigate , Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React from "react";
 const axios = require("axios");
 const { Option } = Select;
@@ -30,7 +30,7 @@ const RegisterForm = () => {
   const success = () => {
     message.success("Kayıt başarılı , yönlendiriliyorsunuz");
   };
-  const error  = () => {
+  const error = () => {
     message.error("Kayıt başarısız");
   };
 
@@ -55,7 +55,6 @@ const RegisterForm = () => {
       .catch((err) => {
         console.log(err);
         error();
-        
       });
   };
 
@@ -201,7 +200,7 @@ const RegisterForm = () => {
         align="middle"
         style={{ minHeight: "100vh" }}
       >
-        <Col>{renderRegister}</Col> 
+        <Col>{renderRegister}</Col>
       </Row>
     </div>
   );
