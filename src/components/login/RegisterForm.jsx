@@ -1,6 +1,6 @@
 import { Button, Form, Input, Select, Row, Col , message  } from "antd";
 import { EditOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 import React from "react";
 const axios = require("axios");
 const { Option } = Select;
@@ -188,10 +188,7 @@ const RegisterForm = () => {
           Register
         </Button>
         <hr />
-        Or{" "}
-        <a href="/">
-          <span>go to login!</span>
-        </a>
+        Or <Link to="/">go to login!</Link>
       </Form.Item>
     </Form>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Conversation from "../conversations/Conversation";
 import { useNavigate } from "react-router-dom";
-import { Input } from "antd";
+import { Input ,message} from "antd";
 import "./home.css";
 import Message from "../messages/Message";
 import SendMessage from "../messages/SendMessage";
@@ -15,6 +15,7 @@ const Home = () => {
   const [currentContact, setCurrentContact] = useState(null);
   const [directMessage, setDirectMessage] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [searchedFriend, setSearchedFriend] = useState(null);
   const scrollRef = useRef();
   const socket = useRef();
   const navigator = useNavigate();
@@ -46,7 +47,7 @@ const Home = () => {
         setCurrentUser(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [navigator]);
 
   useEffect(() => {
     // FROM CURRENT USER TO ALL CONTACT LIST  -> STATE
@@ -65,12 +66,10 @@ const Home = () => {
     // DIRECT MESSAGE ON SOCKET
     currentUser && socket.current.emit("sendUserInfo", currentUser._id);
     socket.current.on("activeUserList", (data) => {
-      console.log(data);
     });
   }, [currentUser]);
 
   useEffect(() => {
-
     // SET CURRENT CONTACT
     axios
       .get(`http://localhost:4000/message/${currentContact?._id}`)
@@ -83,7 +82,20 @@ const Home = () => {
   }, [currentContact]);
 
   useEffect(() => {
+    if(searchedFriend && searchedFriend._id === currentUser._id){
+      message.error("Kendinizi konuşma listesine ekleyemezsiniz")
+      return
+    }
+    contactList.forEach(element => {
+      if(element.members.includes(searchedFriend?._id)){
+        message.warning("Bu kişiyle zaten mevcut konuşmanız bulunmakta")
+        return
+      }
+    })
 
+  },[searchedFriend,currentUser,contactList])
+
+  useEffect(() => {
     // SHOW MESSAGE ON CLIENT
     directMessage &&
       currentContact.members?.includes(directMessage.senderId) &&
@@ -98,16 +110,30 @@ const Home = () => {
     setCurrentContact(conversation);
   };
 
-  const handleCurrentUser = () => {
-
-  }
+  const handleCurrentUser = () => {};
 
   const handleLogout = () => {
-    localStorage.removeItem("user")
-    navigator("/")
-  }
+    localStorage.removeItem("user");
+    navigator("/");
+  };
 
-  const searchFriend = (value) => console.log(value);
+  const searchFriend = (value) => {
+    // if searched user in contact list then give err message
+    const userInfo = {
+      username: value,
+    };
+
+    axios
+      .post(`http://localhost:4000/login`, userInfo)
+      .then((data) => {
+        if (data.data) {
+          setSearchedFriend(data.data);
+        }else{
+          message.error("Aradığınız kullanıcı bulunamadi!")
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   const renderForm = (
     <div className="messenger">
@@ -176,7 +202,9 @@ const Home = () => {
       </div>
       <div className="menu-list">
         <div className="menu-items">
-          <h1 onClick={handleLogout} style={{cursor:"pointer"}}>Logout</h1>
+          <h1 onClick={handleLogout} style={{ cursor: "pointer" }}>
+            Logout
+          </h1>
           <h1>Profile</h1>
           <h1>Settings</h1>
           <h1>Layout</h1>

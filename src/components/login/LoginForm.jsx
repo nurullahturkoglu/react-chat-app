@@ -1,7 +1,7 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Row, Col, message } from "antd";
-import { useNavigate } from "react-router-dom";
-import React, { useState ,useEffect} from "react";
+import { useNavigate, Link } from "react-router-dom";
+import React, { useEffect } from "react";
 const axios = require("axios");
 
 const LoginForm = ({ user, setUser }) => {
@@ -90,7 +90,7 @@ const LoginForm = ({ user, setUser }) => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <a href="#">Forgot password</a>
+        <Link to="#">Forgot Password</Link>
       </Form.Item>
 
       <Form.Item>
@@ -102,7 +102,7 @@ const LoginForm = ({ user, setUser }) => {
         >
           Log in
         </Button>
-        Or <a href="/register">register now!</a>
+        Or <Link to="/register">register now!</Link>
       </Form.Item>
     </Form>
   );
