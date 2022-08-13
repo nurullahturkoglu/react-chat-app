@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Conversation from "../conversations/Conversation";
 import { useNavigate } from "react-router-dom";
-import { Input ,message} from "antd";
+import { Input, message } from "antd";
 import "./home.css";
 import Message from "../messages/Message";
 import SendMessage from "../messages/SendMessage";
@@ -19,7 +19,7 @@ const Home = () => {
   const scrollRef = useRef();
   const socket = useRef();
   const navigator = useNavigate();
-  
+
   useEffect(() => {
     socket.current = io("ws://localhost:4001");
     // GET DIRECT MESSAGES
@@ -65,8 +65,7 @@ const Home = () => {
   useEffect(() => {
     // DIRECT MESSAGE ON SOCKET
     currentUser && socket.current.emit("sendUserInfo", currentUser._id);
-    socket.current.on("activeUserList", (data) => {
-    });
+    socket.current.on("activeUserList", (data) => {});
   }, [currentUser]);
 
   useEffect(() => {
@@ -82,18 +81,17 @@ const Home = () => {
   }, [currentContact]);
 
   useEffect(() => {
-    if(searchedFriend && searchedFriend._id === currentUser._id){
-      message.error("Kendinizi konuşma listesine ekleyemezsiniz")
-      return
+    if (searchedFriend && searchedFriend._id === currentUser._id) {
+      message.error("Kendinizi konuşma listesine ekleyemezsiniz");
+      return;
     }
-    contactList.forEach(element => {
-      if(element.members.includes(searchedFriend?._id)){
-        message.warning("Bu kişiyle zaten mevcut konuşmanız bulunmakta")
-        return
+    contactList.forEach((element) => {
+      if (element.members.includes(searchedFriend?._id)) {
+        message.warning("Bu kişiyle zaten mevcut konuşmanız bulunmakta");
+        return;
       }
-    })
-
-  },[searchedFriend,currentUser,contactList])
+    });
+  }, [searchedFriend, currentUser, contactList]);
 
   useEffect(() => {
     // SHOW MESSAGE ON CLIENT
@@ -128,8 +126,8 @@ const Home = () => {
       .then((data) => {
         if (data.data) {
           setSearchedFriend(data.data);
-        }else{
-          message.error("Aradığınız kullanıcı bulunamadi!")
+        } else {
+          message.error("Aradığınız kullanıcı bulunamadi!");
         }
       })
       .catch((err) => console.log(err));

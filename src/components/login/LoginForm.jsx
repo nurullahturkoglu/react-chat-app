@@ -5,7 +5,6 @@ import React, { useEffect } from "react";
 const axios = require("axios");
 
 const LoginForm = ({ user, setUser }) => {
-  let navigator = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("user")) {
       navigator("/home");
