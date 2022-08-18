@@ -41,6 +41,8 @@ npm install
 
 - Giriş yapan kişinin kullanıcı listesinin otomatik olarak listelenmesi
 
+- Database üzerinde bulunan kullanıcının 'username'i ile direkt bağlantı kurabilme (Eklendi)
+
 - Seçilen kullanıcıya anında mesaj gönderme ve alabilme
 
 ## Projeye Eklenecek özellikler
