@@ -5,7 +5,6 @@ import { Input, message } from "antd";
 import "./home.css";
 import Message from "../messages/Message";
 import SendMessage from "../messages/SendMessage";
-import { getValue } from "@testing-library/user-event/dist/utils";
 const io = require("socket.io-client");
 const { Search } = Input;
 const axios = require("axios");
