@@ -1,7 +1,7 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Row, Col, message } from "antd";
-import { useNavigate } from "react-router-dom";
-import React, { useState ,useEffect} from "react";
+import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 const axios = require("axios");
 
 const LoginForm = ({ user, setUser }) => {
@@ -21,7 +21,6 @@ const LoginForm = ({ user, setUser }) => {
   };
 
   const onFinish = async (values) => {
-    console.log("Received values of form: ", values);
     const user = {
       username: values.username,
       password: values.password,
@@ -89,10 +88,8 @@ const LoginForm = ({ user, setUser }) => {
         <Form.Item name="remember" valuePropName="checked" noStyle>
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
-
-        <a href="#">Forgot password</a>
+        <Link to="#">Forgot password</Link>
       </Form.Item>
-
       <Form.Item>
         <Button
           type="primary"
