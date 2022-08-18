@@ -64,9 +64,7 @@ const Home = () => {
   useEffect(() => {
     // DIRECT MESSAGE ON SOCKET
     currentUser && socket.current.emit("sendUserInfo", currentUser._id);
-    socket.current.on("activeUserList", (data) => {
-      console.log(data);
-    });
+    
   }, [currentUser]);
 
   useEffect(() => {
@@ -107,7 +105,9 @@ const Home = () => {
     navigator("/")
   }
 
-  const searchFriend = (value) => console.log(value);
+  const searchFriend = (value) => {
+    console.log(currentUser && currentUser._id)
+  }
 
   const renderForm = (
     <div className="messenger">
