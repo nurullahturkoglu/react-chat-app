@@ -13,7 +13,6 @@ const PORT = parseInt(process.env.PORT);
 // YOU MUST FILL .env BEFORE START
 dbConnection();
 
-
 // ROUTES
 app.use(express.json())
 app.use(cors());
