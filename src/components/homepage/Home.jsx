@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Conversation from "../conversations/Conversation";
 import { useNavigate } from "react-router-dom";
-import { Input } from "antd";
+import { Input, message } from "antd";
 import "./home.css";
 import Message from "../messages/Message";
 import SendMessage from "../messages/SendMessage";
+import { getValue } from "@testing-library/user-event/dist/utils";
 const io = require("socket.io-client");
 const { Search } = Input;
 const axios = require("axios");
@@ -46,7 +47,7 @@ const Home = () => {
         setCurrentUser(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [navigator]);
 
   useEffect(() => {
     // FROM CURRENT USER TO ALL CONTACT LIST  -> STATE
@@ -64,11 +65,9 @@ const Home = () => {
   useEffect(() => {
     // DIRECT MESSAGE ON SOCKET
     currentUser && socket.current.emit("sendUserInfo", currentUser._id);
-    
   }, [currentUser]);
 
   useEffect(() => {
-
     // SET CURRENT CONTACT
     axios
       .get(`http://localhost:4000/message/${currentContact?._id}`)
@@ -81,7 +80,6 @@ const Home = () => {
   }, [currentContact]);
 
   useEffect(() => {
-
     // SHOW MESSAGE ON CLIENT
     directMessage &&
       currentContact.members?.includes(directMessage.senderId) &&
@@ -89,6 +87,7 @@ const Home = () => {
   }, [directMessage, currentContact]);
 
   useEffect(() => {
+    // SET SCROLL TO MESSAGES END
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
@@ -96,18 +95,72 @@ const Home = () => {
     setCurrentContact(conversation);
   };
 
-  const handleCurrentUser = () => {
-
-  }
+  const handleCurrentUser = () => {};
 
   const handleLogout = () => {
-    localStorage.removeItem("user")
-    navigator("/")
-  }
+    //User Logout Function
+    localStorage.removeItem("user");
+    navigator("/");
+  };
 
   const searchFriend = (value) => {
-    console.log(currentUser && currentUser._id)
-  }
+    // Search Friend Function
+    const searchedUser = {
+      username: value,
+    };
+
+    if (searchedUser.username.trim() === "") {
+      return message.error("Bu alani boş bırakamazsiniz");
+    }
+
+    if (currentUser && currentUser.username === searchedUser.username) {
+      return message.error("Kendinize mesaj gönderemezsiniz!");
+    }
+
+    axios
+      .post("http://localhost:4000/login/", searchedUser)
+      .then((data) => {
+        if (!data.data) {
+          return message.error("Kullanici bulunamadi!");
+        }
+
+        // CHECK CURRENT USER'S CONTACT LIST 
+        // IF SEARCHED USER IN THIS LIST
+        // THEN GIVE ERROR
+
+        let isExistOnContact = false;
+        contactList.forEach((value) => {
+          value.members?.forEach((value) => {
+            if (value === data.data._id) {
+              isExistOnContact = true;
+            }
+          });
+        });
+
+        if (isExistOnContact) {
+          return message.warning(
+            "Bu kullanici zaten mesajlaşma listenizde mevcut!"
+          );
+        }
+
+        // IF WE HAVE NOT ANY PROBLEM THEN ADD A NEW USER IN CONTACT LIST
+        
+        const newContact = {
+          senderId:currentUser._id,
+          receiverId:data.data._id
+        }
+
+        axios.post("http://localhost:4000/conversation",newContact)
+        .then(data => {
+          // SET CONTACT LIST FOR PREVIEW
+          setContactList(prevList => {
+            return [...prevList,data.data]
+          })
+        })
+
+      })
+      .catch((err) => console.log(err));
+  };
 
   const renderForm = (
     <div className="messenger">
@@ -126,6 +179,7 @@ const Home = () => {
             allowClear
             enterButton="Search"
             size="large"
+            spellCheck="false"
             onSearch={searchFriend}
           />
           {contactList?.map((element, index) => {
@@ -169,6 +223,7 @@ const Home = () => {
                 currentUser={currentUser}
                 messages={messages}
                 setMessages={setMessages}
+                spellCheck="false"
               />
             </div>
           </div>
@@ -176,7 +231,9 @@ const Home = () => {
       </div>
       <div className="menu-list">
         <div className="menu-items">
-          <h1 onClick={handleLogout} style={{cursor:"pointer"}}>Logout</h1>
+          <h1 onClick={handleLogout} style={{ cursor: "pointer" }}>
+            Logout
+          </h1>
           <h1>Profile</h1>
           <h1>Settings</h1>
           <h1>Layout</h1>
