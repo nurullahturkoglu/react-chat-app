@@ -7,8 +7,8 @@ export default function Conversation({ownUser, members ,currentUser , onClick}) 
 
   useEffect(() => {
     const getUserInfo = async () => {
-      members?.forEach((element) => {
-        if (element !== currentUser?._id) {
+      members && members.forEach((element) => {
+        if (element !== currentUser._id) {
           axios
             .get(`http://localhost:4000/login/${element}`)
             .then((res) => {
@@ -19,7 +19,7 @@ export default function Conversation({ownUser, members ,currentUser , onClick}) 
       });
     };
     getUserInfo();
-  }, []);
+  }, [members,currentUser]);
 
   return (
     <div onClick={onClick}>
