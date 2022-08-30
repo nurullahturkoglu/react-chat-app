@@ -11,14 +11,13 @@ import ErrorPage from "./components/login/ErrorPage"
 
 function PageRouter() {
 
-  const [user,setUser] = useState([]);
 
   return (
     <Router>
         <Routes>
-            <Route path="/" element={<LoginForm user={user} setUser={setUser}/>}/>
+            <Route path="/" element={<LoginForm/>}/>
             <Route path="/register" element={<RegisterForm/>}/>
-            <Route path="/home" element={<Home user={user} setUser={setUser}/>}/>
+            <Route path="/home" element={<Home/>}/>
             <Route path="*" element={<ErrorPage/>}/>
         </Routes>
     </Router>

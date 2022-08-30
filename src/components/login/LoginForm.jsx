@@ -2,6 +2,7 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Row, Col, message } from "antd";
 import { useNavigate, Link } from "react-router-dom";
 import React, { useEffect } from "react";
+import "./login.css";
 const axios = require("axios");
 
 const LoginForm = () => {
@@ -45,67 +46,71 @@ const LoginForm = () => {
   };
 
   const renderForm = (
-    <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Username!",
-          },
-        ]}
+    <div className="login-background">
+      <Form
+        name="normal_login"
+        className="login-form"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        
       >
-        <Input
-          style={{ borderRadius: "1.2rem" }}
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
-        />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Password!",
-          },
-        ]}
-      >
-        <Input
-          style={{ borderRadius: "1.2rem" }}
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Item>
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-        <Link to="#">Forgot password</Link>
-      </Form.Item>
-      <Form.Item>
-        <Button
-          type="primary"
-          htmlType="submit"
-          className="login-form-button"
-          style={{ margin: "1rem" }}
+        <Form.Item
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Username!",
+            },
+          ]}
         >
-          Log in
-        </Button>
-        Or <a href="/register">register now!</a>
-      </Form.Item>
-    </Form>
+          <Input
+            style={{ borderRadius: "1.2rem" , color:"#f4a261",fontSize:"bold"}}
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="Username"
+            autoFocus
+          />
+        </Form.Item>
+        <Form.Item
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Password!",
+            },
+          ]}
+        >
+          <Input
+            style={{ borderRadius: "1.2rem",color:"#f4a261"}}
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            type="password"
+            placeholder="Password"
+          />
+        </Form.Item>
+        <Form.Item>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+          <Link to="#">Forgot password</Link>
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+            style={{ margin: "1rem" }}
+          >
+            Log in
+          </Button>
+          Or <a href="/register">register now!</a>
+        </Form.Item>
+      </Form>
+    </div>
   );
 
   return (
-    <div className="login-form-container">
+    <div className="login">
       <Row
         type="flex"
         justify="center"

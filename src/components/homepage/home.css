@@ -5,49 +5,56 @@
 .messenger {
   height: 100vh;
   display: flex;
+  
 }
 
 .contact-list {
-  flex: 3;
+  flex: 2;
+  background-image: url("../../images/home-background.jpg");
+  background-size: cover;
 }
 
 .messages-list {
-  flex: 7;
+  flex: 8;
+  background-image: url("../../images/messages.jpg");
+  background-size: cover;
 }
 
-.menu-list{
-  flex:2
+.menu-list {
+  flex: 2;
+  background-image: url("../../images/menu.jpg");
+  background-size: cover;
 }
 
-.contact-wrapper{
+.contact-wrapper {
   padding: 1rem;
   height: 100%;
   overflow-y: scroll;
 }
 
-.messages-text-area{
+.messages-text-area {
   height: 90%;
   overflow-y: scroll;
 }
 
-.messages-send{
+.messages-send {
   padding-top: 1.5rem;
 }
 
 .contact-wrapper,
-.messages-wrapper{
+.messages-wrapper {
   padding: 10px;
   height: 100%;
 }
 
-.no-conversation{
+.no-conversation {
   display: flex;
   justify-content: center;
   align-self: center;
-  padding-top: 30%;  
+  padding-top: 30%;
 }
 
-.no-conversation h2{
-  cursor:pointer;
+.no-conversation h2 {
+  cursor: pointer;
   font-size: 3rem;
 }

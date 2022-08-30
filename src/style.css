@@ -1,7 +1,7 @@
 @import "~antd/dist/antd.css";
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 
@@ -13,7 +13,6 @@
   text-align: center;
   gap: 5px;
   height: 100vh;
-  font-family: "Roboto", Georgia, Times, "Times New Roman", serif;
 }
 
 .button-container {

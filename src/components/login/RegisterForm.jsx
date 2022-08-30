@@ -2,6 +2,7 @@ import { Button, Form, Input, Select, Row, Col, message } from "antd";
 import { EditOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 import { useNavigate, Link } from "react-router-dom";
 import React from "react";
+import "./login.css";
 const axios = require("axios");
 const { Option } = Select;
 
@@ -193,7 +194,7 @@ const RegisterForm = () => {
   );
 
   return (
-    <div className="login-form-container">
+    <div className="register">
       <Row
         type="flex"
         justify="center"
