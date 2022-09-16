@@ -34,4 +34,4 @@ const signUpTemplate = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("userTable", signUpTemplate);
+module.exports = mongoose.model("users", signUpTemplate);

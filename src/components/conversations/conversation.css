@@ -1,15 +1,18 @@
 .conversation{
     display: flex;
     align-items: center;
-    padding: 1.2rem;
+    padding: 1rem;
     cursor: pointer;
     border: 1px solid black;
+    color: #f7ede2;
+    text-shadow: 0px 0px 5px black;
+    background-color: #370617;
     border-radius: 1.2rem;
     margin-bottom: 0.75rem;
 }
 
 .conversation:hover{
-    background-color:azure;
+    background-color:#03071e;
 }
 
 .conversation-image{
