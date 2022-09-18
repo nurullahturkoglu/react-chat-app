@@ -1,9 +1,19 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 const UserDatabase = require("../models/SignUpModel");
 const bcrypt = require("bcrypt");
+const { protect } = require("../middleware/authMiddleware");
 
-// REGISTER
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.SECRET_JWT, {
+    expiresIn: "7d",
+  });
+};
+
+// @desc Register to app
+// @route /login/sign-up
+// @access PUBLIC
 
 router.post("/sign-up", async (req, res) => {
   try {
@@ -11,19 +21,25 @@ router.post("/sign-up", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
+    const { fullName, username, email, phone } = req.body;
+
+    if (!fullName || !username || !email || !phone) {
+      return res.status(400).json({ err: "Please fill all field" });
+    }
     //create user model
     const signedUpUser = new UserDatabase({
-      fullName: req.body.fullName,
-      username: req.body.username,
-      email: req.body.email,
-      phone: req.body.phone,
+      fullName,
+      username,
+      email,
+      phone,
       password: hashedPassword,
     });
 
-    //check username
     const isUsernameExist = await UserDatabase.findOne({
       username: req.body.username,
     });
+
+    //check username
     if (isUsernameExist)
       return res.status(404).json({ err: "this username already exist" });
 
@@ -39,54 +55,101 @@ router.post("/sign-up", async (req, res) => {
 
     // save on database
     const user = signedUpUser.save();
-    res.status(200).json(user);
+
+    res.status(200).json({
+      username,
+      token: generateToken(user._id),
+    });
   } catch (error) {
     res.status(500).json({ msg: error });
   }
 });
 
-// LOGIN
+// @desc Login to app
+// @route /login/sign-in
+// @access PUBLIC
 
 router.post("/sign-in", async (req, res, next) => {
   try {
-    let user = await UserDatabase.findOne({ username: req.body.username });
-    if (!user)
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      res.status(400);
+      throw new Error("Please fill all field");
+    }
+
+    let user = await UserDatabase.findOne({ username });
+    const validPassword = await bcrypt.compare(password, user.password);
+
+    if (!user || !validPassword) {
       return res
         .status(400)
-        .send({ status: 400, message: "Invalid Email or Password" });
+        .send({ status: 400, message: "Invalid Username or Password" });
+    }
 
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-    if (!validPassword)
-      return res
-        .status(400)
-        .send({ status: 400, message: "Invalid Email or Password" });
-
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(500).json({ msg: error });
+    res.status(200).json({
+      _id: user._id,
+      fullName: user.fullName,
+      username: user.username,
+      email: user.email,
+      phone: user.phone,
+      token: generateToken(user._id),
+    });
+  } catch (Error) {
+    res.status(500).json({ msg: Error });
   }
 });
+
+// @desc Get user's infos from username
+// @route /login
+// @access PUBLIC
+// @note PLEASE USE /login/:id. THIS IS JUST CREATED FOR TEST
 
 router.post("/", async (req, res) => {
   try {
-    const searchedUser = await UserDatabase.findOne({
+    const user = await UserDatabase.findOne({
       username: req.body.username,
-    }).select({ password: 0 });
-    res.status(200).json(searchedUser);
+    }).select("-password");
+
+    if (user) {
+      res.status(200).json({
+        _id: user._id,
+        fullName: user.fullName,
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(404).json({ msg: "didn't find" });
+    }
   } catch (error) {
     res.status(500).json({ msg: error });
   }
 });
 
-router.get("/:id", async (req, res) => {
+// @desc Get user's infos from user id
+// @route /login/:id
+// @access PUBLIC
+
+router.get("/:id",protect, async (req, res) => {
   try {
-    const searchedUser = await UserDatabase.findOne({
+    const user = await UserDatabase.findOne({
       _id: req.params.id,
     }).select({ password: 0 });
-    res.status(200).json(searchedUser);
+
+    if (user) {
+      res.status(200).json({
+        _id: user._id,
+        fullName: user.fullName,
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(404).json({ msg: "didn't find" });
+    }
   } catch (error) {
     res.status(500).json({ msg: error });
   }

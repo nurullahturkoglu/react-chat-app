@@ -7,7 +7,7 @@ export default function Message({ senderId , text ,currentUserId }) {
     <div className={senderId !== currentUserId ? "message-content" : "message-content own"}>
       <img
         className="message-image"
-        src={require("../../images/avatar.png")}
+        src={require("../../images/avatar-human.avif")}
         alt="avatar"
       />
       <p className={senderId !== currentUserId ? "message-text" : "message-text own"}>

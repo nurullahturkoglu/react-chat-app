@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const Conversation = require("../models/Conversation");
 
+
+// @desc Get conversationId from senderId & receiverId
+// @route /conversation
+// @access PUBLIC
+
 router.post("/", async (req, res) => {
   try {
     const newUser = new Conversation({
@@ -13,6 +18,10 @@ router.post("/", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// @desc Get user conversations from userId 
+// @route /conversation/id
+// @access PUBLIC
 
 router.get("/:userid", async (req, res) => {
   
@@ -26,6 +35,10 @@ router.get("/:userid", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// @desc Get conversation from conversationId
+// @route /conversation/get
+// @access PUBLIC
 
 router.get("/get/:conversationId", async (req, res) => {
   

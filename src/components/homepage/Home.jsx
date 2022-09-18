@@ -37,11 +37,17 @@ const Home = () => {
     }
 
     // SET CURRENT USER
-    const name = JSON.parse(localStorage.getItem("user"));
-    const user = { username: name };
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    let config = {
+      headers: {
+        "Authorization": 'Bearer ' + user.token,
+        "userId":user._id,
+      },
+    };
 
     axios
-      .post("http://localhost:4000/login", user)
+      .get(`http://localhost:4000/login/${user._id}`,config)
       .then((res) => {
         setCurrentUser(res.data);
       })
@@ -50,10 +56,10 @@ const Home = () => {
 
   useEffect(() => {
     // FROM CURRENT USER TO ALL CONTACT LIST  -> STATE
-    const currUserId = currentUser?._id;
+
     currentUser?._id &&
       axios
-        .get(`http://localhost:4000/conversation/${currUserId}`)
+        .get(`http://localhost:4000/conversation/${currentUser._id}`)
         .then((res) => {
           const conversations = res.data;
           setContactList(conversations);
@@ -123,7 +129,7 @@ const Home = () => {
           return message.error("Kullanici bulunamadi!");
         }
 
-        // CHECK CURRENT USER'S CONTACT LIST 
+        // CHECK CURRENT USER'S CONTACT LIST
         // IF SEARCHED USER IN THIS LIST
         // THEN GIVE ERROR
 
@@ -143,20 +149,20 @@ const Home = () => {
         }
 
         // IF WE HAVE NOT ANY PROBLEM THEN ADD A NEW USER IN CONTACT LIST
-        
+
         const newContact = {
-          senderId:currentUser._id,
-          receiverId:data.data._id
-        }
+          senderId: currentUser._id,
+          receiverId: data.data._id,
+        };
 
-        axios.post("http://localhost:4000/conversation",newContact)
-        .then(data => {
-          // SET CONTACT LIST FOR PREVIEW
-          setContactList(prevList => {
-            return [...prevList,data.data]
-          })
-        })
-
+        axios
+          .post("http://localhost:4000/conversation", newContact)
+          .then((data) => {
+            // SET CONTACT LIST FOR PREVIEW
+            setContactList((prevList) => {
+              return [...prevList, data.data];
+            });
+          });
       })
       .catch((err) => console.log(err));
   };

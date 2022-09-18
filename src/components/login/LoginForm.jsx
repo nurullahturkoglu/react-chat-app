@@ -29,9 +29,11 @@ const LoginForm = () => {
 
     axios
       .post("http://localhost:4000/login/sign-in", user)
-      .then((response) => {
-        //setState ile kullanıcı adını state'e alma
-        localStorage.setItem("user", JSON.stringify(user.username));
+      .then((response) => response.data)
+
+      .then((data) => {
+        //Localstorage'a kullanıcının tokenini alma
+        localStorage.setItem("user", JSON.stringify(data));
 
         // success message
         success();
@@ -54,7 +56,6 @@ const LoginForm = () => {
           remember: true,
         }}
         onFinish={onFinish}
-        
       >
         <Form.Item
           name="username"
@@ -66,7 +67,11 @@ const LoginForm = () => {
           ]}
         >
           <Input
-            style={{ borderRadius: "1.2rem" , color:"#f4a261",fontSize:"bold"}}
+            style={{
+              borderRadius: "1.2rem",
+              color: "#f4a261",
+              fontSize: "bold",
+            }}
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Username"
             autoFocus
@@ -82,7 +87,7 @@ const LoginForm = () => {
           ]}
         >
           <Input
-            style={{ borderRadius: "1.2rem",color:"#f4a261"}}
+            style={{ borderRadius: "1.2rem", color: "#f4a261" }}
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"

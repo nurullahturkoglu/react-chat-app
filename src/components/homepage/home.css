@@ -51,10 +51,12 @@
   display: flex;
   justify-content: center;
   align-self: center;
-  padding-top: 30%;
+  padding-top: 10%;
 }
 
 .no-conversation h2 {
   cursor: pointer;
   font-size: 3rem;
+  color: black;
+  text-shadow: 0 0 3  px black;
 }
