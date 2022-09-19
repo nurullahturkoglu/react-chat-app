@@ -1,78 +1,68 @@
-# React ile Online Mesajlaşma Uygulaması
+# Online Chat Application with React - Node.js
 
-## Projenin içeriği
+## Basic Overview
 
-Bu projenin oluşturulma amacı , kişilerin online olarak birbirine mesaj gönderebilmesi ve alabilmesidir.
+You can create your own online chat application with this project.
 
-
-## Bu projede hangi framework-library'ler kullanıldı
+## Used Frameworks
 
 `React`
 `Node.js`
-`socket.io`
 `mongoose`
 `express`
-`axios`
-`nodemon`
-`cors`
+`socket.io`
+`jsonwebtoken`
+`antd`
 
-## Proje nasıl kurulur
+## Features
+
+- **Register to app**  
+>NOTE: It will be check before created user exist with same username or e-mail
+- **Automatic adding avatar when creating user**
+- **'Remember me' button & creating a json web token when user logging in**
+>NOTE: You can choose the time range
+- **All page's routed with 'react-router-dom'**
+- **All contact list of logined user can see**
+- **Sending direct message to selected user**
+- **Authorization with Json Web Token**
+
+## Installation
+```diff
+! IMPORTANT: You must create 3 new terminal in your IDE. 
+- IMPORTANT: You must set the .env file with your info in server directory  
+```
+>First, run the following code in one terminal
 ```javascript
 npm install
-```
+```  
+>Then run the following code sequel in other terminal
 ```javascript
 cd server
 npm install
-```
+```  
+>Then run the following code sequel in other terminal  
 ```javascript
 cd socket
 npm install
 ```
- 
-## Projede kullanılmış olan özellikler
 
-- Üyelik oluşturma anında daha önce kullanılmış özelliklere(kullanıcı adı, e-posta, telefon numarası) sahip üyelik veritabanında mevcut ise tekrar üyelik oluşturmama
+## Images  
 
-- Üyelik oluşturan her kullanıcıya otomatik avatar ekleme
-
-- Giriş yaparken 'remember me' seçeneği eklenmesi
-
-- Giriş yapılmadan anasayfaya erişimin kısıtlanması
-
-- Giriş yapan kişinin kullanıcı listesinin otomatik olarak listelenmesi
-
-- Database üzerinde bulunan kullanıcının 'username'i ile direkt bağlantı kurabilme (Eklendi)
-
-- Seçilen kullanıcıya anında mesaj gönderme ve alabilme
-
-## Projeye Eklenecek özellikler
-
-- Girişlerin JWT üzerinden token ile alınıp kontrol edilmesi
-
-- Kullanıcın profilini düzenleyebilmesi
-
-- Kullanıcının arkaplanını değiştirebilmesi
-
-- Aktif kullanıcıların listelenebilmesi
-
-## Projeden Görüntüler
 ### Register
-![register](https://user-images.githubusercontent.com/73299153/183383919-3f7307c8-0e41-4d35-bb34-7cf601559707.JPG)
+![register](https://user-images.githubusercontent.com/73299153/191112779-efb37aa8-953a-4ac6-a0bc-0fead606674e.JPG)
 
 ### Login
-![login](https://user-images.githubusercontent.com/73299153/183384293-9d4bedeb-7995-43ea-87dd-43fdf4bcf098.JPG)
+![login](https://user-images.githubusercontent.com/73299153/191112756-9edada54-c627-4765-a9cb-c01f6bd6d91a.JPG)
 
 ### Homepage
-![homepage](https://user-images.githubusercontent.com/73299153/183384291-fd17015d-6a11-4ba1-9b70-d6ea1abe389b.JPG)
+![home](https://user-images.githubusercontent.com/73299153/191112786-62c692d6-ce2a-4646-9dd4-b71e08f17004.JPG)
 
 ### Conversations
-![conversation](https://user-images.githubusercontent.com/73299153/183384288-edd997e8-83a1-4af9-9d07-5a7ca197bc08.JPG)
+![conversation](https://user-images.githubusercontent.com/73299153/191112792-406e6770-fd76-4868-9456-6ab942faadfe.JPG)
 
 
+## Personal Comment
+**I did develop this project when i'm intern at Parts-Soft.Its my first huge project with react because i did use a lot of library of javascript (which i didn't even know what is the javascript 2 months ago).Thanks for [Parts-Soft](https://www.parts-soft.nl/) to giving this oppurtunaty to me.Also thanks for [Ekrem Tınas](https://github.com/ekremtinas) which his my project manager in Parts-Soft & [Lama Devoloper](https://www.youtube.com/c/LamaDev) which my guider.I did learned a lot think like reading documentacion and solving problem & using internet.I hope you like this project ❤.**
 
-### Proje hakkında kişisel yorumum
-
-Bu proje staj esnasında reactı öğrenirken tasarladığım ilk büyük çaplı proje.React özelliklerini , server kısmının oluşturulmasını , socket.io'nun bağlanmasını ve mongodb ile veritabanı kullanmasını kavradım. Benim için çok büyük bir adım oldu. Hatalarla yüzleşmeyi , dokümantasyon okumasını , projenin adım adım nasıl geliştirilebileceğini , doğru kaynak aramasını öğrendim.Projeyi oluştururken takip ettiğim [Lama Devoloper](https://www.youtube.com/c/LamaDev) ve staj işyerinde bulunan [Ekrem Abime](https://github.com/ekremtinas) teşekkür ediyorum.
-
-**Not: bu proje react kullanarak yaptığım ilk büyük projedir**  
-**Not: projenin geliştirilmesi takribi 10 gün sürmüştür**
+## Feedback
+**Feel free to send us feedback on [E-mail](mailto:nurullahtrkglu@gmail.com) or [Linkedin](https://www.linkedin.com/in/nurullahturkoglu/).Feature requests are always welcome. If you wish to contribute its free to open**  
