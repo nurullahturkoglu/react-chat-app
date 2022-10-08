@@ -62,6 +62,9 @@ const Home = () => {
         .get(`http://localhost:4000/conversation/${currentUser._id}`)
         .then((res) => {
           const conversations = res.data;
+          // sort timestap
+          conversations.sort(function(a, b){return new Date(b.updatedAt).getTime() -  new Date(a.updatedAt).getTime()});
+          console.log(conversations)
           setContactList(conversations);
         })
         .catch((err) => console.log(err));
@@ -86,9 +89,10 @@ const Home = () => {
 
   useEffect(() => {
     // SHOW MESSAGE ON CLIENT
-    directMessage &&
-      currentContact.members?.includes(directMessage.senderId) &&
-      setMessages((messages) => [...messages, directMessage]);
+    if(directMessage && currentContact.members?.includes(directMessage.senderId) ){
+      setMessages((messages) => [...messages, directMessage])
+      setContactList(prevContactList => [currentContact,...prevContactList.filter(contact => contact !== currentContact)])
+    }
   }, [directMessage, currentContact]);
 
   useEffect(() => {
@@ -227,6 +231,7 @@ const Home = () => {
                 currentContact={currentContact}
                 currentUser={currentUser}
                 messages={messages}
+                setContactList={setContactList}
                 setMessages={setMessages}
                 spellCheck="false"
               />

@@ -7,8 +7,8 @@ export default function SendMessage({
   socket,
   currentContact,
   currentUser,
-  messages,
   setMessages,
+  setContactList
 }) {
   const [form] = Form.useForm();
 
@@ -18,6 +18,7 @@ export default function SendMessage({
       return;
     }
     form.resetFields();
+
     const messageJson = {
       conversationId: currentContact?._id,
       senderId: currentUser?._id,
@@ -28,12 +29,20 @@ export default function SendMessage({
       (userid) => userid !== currentUser?._id
     );
 
+    
+
     socket.current.emit("getMessage", {
       senderId: currentUser?._id,
       receiverId: receiverId,
       text: values.sendMessage,
     });
 
+    axios.post("http://localhost:4000/conversation/setUpdate",{time:new Date(),conversationId:currentContact?._id})
+    .then(res => {
+      setContactList(prevContactList => [currentContact,...prevContactList.filter(contact => contact !== currentContact)])
+    })
+    .catch(err => console.log(err))
+    
     axios
       .post("http://localhost:4000/message", messageJson)
       .then((res) => {
