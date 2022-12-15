@@ -155,4 +155,22 @@ router.get("/:id",protect, async (req, res) => {
   }
 });
 
+// @desc Get all user
+// @route /login/users
+// @access PUBLIC
+
+router.get("/users",protect, async (req, res) => {
+  try {
+    const user = await UserDatabase.find().select({ password: 0 });
+
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ msg: "didn't find" });
+    }
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+});
+
 module.exports = router;

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Conversation = require("../models/Conversation");
-
+var ObjectId = require('mongoose').Types.ObjectId;
 
 // @desc Get conversationId from senderId & receiverId
 // @route /conversation
@@ -18,14 +18,26 @@ router.post("/", async (req, res) => {
     res.status(500).json(error);
   }
 });
+// @desc set timestamp of conversation
+// @route /conversation
+// @access PUBLIC
 
-// @desc Get user conversations from userId 
+router.post("/setUpdate", async (req, res) => {
+  try {
+    const { time, conversationId } = req.body;
+    const user = await Conversation.findOneAndUpdate({ _id: new ObjectId(conversationId) },{updatedAt:time});
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// @desc Get user conversations from userId
 // @route /conversation/id
 // @access PUBLIC
 
 router.get("/:userid", async (req, res) => {
-  
-    try {
+  try {
     const findUser = await Conversation.find({
       members: { $in: req.params.userid },
     });
@@ -37,21 +49,19 @@ router.get("/:userid", async (req, res) => {
 });
 
 // @desc Get conversation from conversationId
-// @route /conversation/get
+// @route /conversation/get/id
 // @access PUBLIC
 
 router.get("/get/:conversationId", async (req, res) => {
-  
   try {
-  const findConversation = await Conversation.find({
-    _id: req.params.conversationId ,
-  });
+    const findConversation = await Conversation.find({
+      _id: req.params.conversationId,
+    });
 
-  res.status(200).json(findConversation);
-} catch (error) {
-  res.status(500).json(error);
-}
+    res.status(200).json(findConversation);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
-
 
 module.exports = router;

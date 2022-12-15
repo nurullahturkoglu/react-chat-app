@@ -7,7 +7,7 @@ const message = require('./routes/message')
 const cors = require('cors');
 
 const app = express();
-const PORT = parseInt(process.env.PORT);
+const PORT = parseInt(process.env.PORT) || 4000 ;
 
 // DB CONNECTION
 // YOU MUST FILL .env BEFORE START

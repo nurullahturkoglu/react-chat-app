@@ -21,8 +21,8 @@ io.on("connection",(socket) => {
     }
 
     const findSocketId = (userId) => {
-        const findUser = activeUsers.find(user => user.userId === userId)
-        return findUser.socketId
+        const findUser = activeUsers?.find(user => user.userId === userId)
+        return findUser?.socketId
     }
 
     // GET getMessage method FROM CLIENT
