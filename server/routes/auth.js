@@ -155,11 +155,11 @@ router.get("/:id",protect, async (req, res) => {
   }
 });
 
-// @desc Get all user
+// @desc Get all users
 // @route /login/users
 // @access PUBLIC
 
-router.get("/users",protect, async (req, res) => {
+router.get("/user",protect, async (req, res) => {
   try {
     const user = await UserDatabase.find().select({ password: 0 });
 

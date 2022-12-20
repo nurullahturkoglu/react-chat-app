@@ -2,14 +2,14 @@
 
 ## Basic Overview
 
-You can create your own online chat application with this project.
+You can create your own online chat application & instant message with other at this project.
 
-## Used Frameworks
+## Used Frameworks & Technologies
 
 `React`
 `Node.js`
-`mongoose`
-`express`
+`MongoDB`
+`Docker`
 `socket.io`
 `jsonwebtoken`
 `antd`
@@ -21,18 +21,25 @@ You can create your own online chat application with this project.
 - **Automatic adding avatar when creating user**
 - **'Remember me' button & creating a json web token when user logging in**
 >NOTE: You can choose the time range
+- **Instant Message using socket**
+- **Auto scroll to message's end**
 - **All page's routed with 'react-router-dom'**
 - **All contact list of logined user can see**
 - **Sending direct message to selected user**
-- **Authorization with Json Web Token**
+- **Authorization & Authentication with JWT**
+
+- **Sharing photo,video,documents... with Google Cloud (Will added)**
+- **Dockerizing all application (Will Added)**
+
 
 ## Installation
 ```diff
 ! IMPORTANT: You must create 3 new terminal in your IDE. 
-- IMPORTANT: You must set the .env file with your info in server directory  
+- IMPORTANT: You must set the .env file with your info in `server` directory  
 ```
 >First, run the following code in one terminal
 ```javascript
+cd client
 npm install
 ```  
 >Then run the following code sequel in other terminal

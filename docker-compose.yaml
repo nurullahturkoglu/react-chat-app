@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  server:
+    build: ./server
+    container_name: api_container
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./server:/app
+    environment:
+      URI: "mongodb://localhost:27017/messenger"
+      SECRET_JWT: "123abc"
+  client:
+    build: ./client
+    container_name: client_container
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
+
+
+      

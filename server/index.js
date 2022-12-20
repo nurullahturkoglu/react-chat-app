@@ -9,7 +9,7 @@ const cors = require('cors');
 const app = express();
 const PORT = parseInt(process.env.PORT) || 4000 ;
 
-// DB CONNECTION
+// DB CONNECTIONS
 // YOU MUST FILL .env BEFORE START
 dbConnection();
 
