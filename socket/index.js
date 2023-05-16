@@ -15,11 +15,12 @@ io.on("connection",(socket) => {
             activeUsers.push({userId,socketId})
     }
 
-    // REMOVE TO DISCONNECTED USER FROM CLIENT
+    // REMOVE DISCONNECTED USER FROM CLIENT
     const removeDisconnectedUser = (socketId) => {
         activeUsers = activeUsers.filter(user => user.socketId !== socketId)
     }
 
+    //FIND SOCKET ID OF USER
     const findSocketId = (userId) => {
         const findUser = activeUsers?.find(user => user.userId === userId)
         return findUser?.socketId
@@ -42,7 +43,7 @@ io.on("connection",(socket) => {
         socket.emit("activeUserList",activeUsers)
     })
 
-    // CATCH UP DISCONNECTED USER FROM CLIENT
+    // GET disconnect method FROM CLIENT
     socket.on("disconnect",() => {
         console.log("user disconnected",socket.id)
         removeDisconnectedUser(socket.id)

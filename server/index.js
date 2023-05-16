@@ -13,9 +13,11 @@ const PORT = parseInt(process.env.PORT) || 4000 ;
 // YOU MUST FILL .env BEFORE START
 dbConnection();
 
-// ROUTES
+// Middlewares
 app.use(express.json())
 app.use(cors());
+
+// Routes
 app.use('/login',auth)
 app.use('/conversation',conversation)
 app.use('/message',message)
